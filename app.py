@@ -36,7 +36,7 @@ def init_db():
     # Insert demo names if table is empty
     c.execute("SELECT COUNT(*) FROM names")
     if c.fetchone()[0] == 0:
-        demo_names = [
+        transporters = [
             "A&A Global",
             "ABC",
             "Abdlas",
@@ -70,7 +70,7 @@ def init_db():
         ]
 
         c.executemany(
-            "INSERT INTO names (name) VALUES (?)", [(name,) for name in demo_names]
+            "INSERT INTO names (name) VALUES (?)", [(name,) for name in transporters]
         )
 
     conn.commit()
