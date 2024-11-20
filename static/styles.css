@@ -1,0 +1,180 @@
+body {
+	font-family: Arial, sans-serif;
+	line-height: 1.6;
+	margin: 0;
+	padding: 0;
+	background-color: #f4f4f9;
+}
+
+header {
+	background: green;
+	color: #fff;
+	padding: 10px 0;
+	text-align: center;
+}
+
+main {
+	padding: 20px;
+	max-width: 600px;
+	margin: 0 auto;
+	background: #fff;
+	border-radius: 5px;
+	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+	color: white;
+}
+
+h2 {
+	color: #333;
+}
+
+form {
+	margin-bottom: 20px;
+}
+
+label {
+	display: block;
+	margin: 10px 0 5px;
+}
+
+select,
+button {
+	width: 100%;
+	padding: 10px;
+	margin-bottom: 15px;
+	border: 1px solid #ccc;
+	border-radius: 5px;
+}
+
+button {
+	background: green;
+	color: #fff;
+	font-size: 16px;
+	cursor: pointer;
+}
+
+button:hover {
+	background: green;
+}
+
+#slot-info {
+	margin-top: 20px;
+}
+
+p {
+	margin: 5px 0;
+	color: #555;
+}
+form {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+}
+
+input,
+select,
+button {
+	padding: 10px;
+	font-size: 1rem;
+	border: 1px solid #ccc;
+	border-radius: 5px;
+}
+
+#status-message {
+	font-weight: bold;
+	color: green;
+}
+
+section {
+    margin: 20px auto;
+    padding: 20px;
+    max-width: 1200px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  h2 {
+    text-align: center;
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 20px;
+  }
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #fff;
+    overflow: hidden;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  thead {
+    background-color: #02742d;
+    color: #fff;
+  }
+  
+  thead th {
+    padding: 15px;
+    text-align: left;
+    font-size: 16px;
+    text-transform: uppercase;
+  }
+  
+  tbody tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+  
+  tbody tr:hover {
+    background-color: #e8f4ff;
+    cursor: pointer;
+  }
+  
+  td, th {
+    padding: 12px 15px;
+    text-align: left;
+    border: 1px solid #ddd;
+  }
+  
+  td {
+    font-size: 14px;
+    color: #555;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    table, thead, tbody, th, td, tr {
+      display: block;
+    }
+  
+    thead tr {
+      display: none;
+    }
+  
+    tbody tr {
+      margin-bottom: 15px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+    }
+  
+    td {
+      padding: 10px;
+      text-align: right;
+      position: relative;
+    }
+  
+    td::before {
+      content: attr(data-label);
+      position: absolute;
+      left: 10px;
+      font-weight: bold;
+      text-transform: uppercase;
+      color: #333;
+    }
+  }
+  

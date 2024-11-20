@@ -1,0 +1,157 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User Registration</title>
+  <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+  <header>
+    <h1>Event Registration</h1>
+  </header>
+  <main>
+    <form id="registration-form">
+      <label for="name">Select Your Name:</label>
+      <select id="name" name="name" required>
+        <option value="" disabled selected>Select a name</option>
+        {% for name in names %}
+        <option value="{{ name }}">{{ name }}</option>
+        {% endfor %}
+      </select>
+
+      <label for="email">Enter Your Email:</label>
+      <input type="email" id="email" name="email" required placeholder="you@example.com">
+
+      <label for="day">Select a Day:</label>
+      <select id="day" name="day" required>
+        <option value="" disabled selected>Select a day</option>
+        <option value="1">Day 1 (December 5)</option>
+        <option value="2">Day 2 (December 6)</option>
+      </select>
+
+      <button type="submit">Register</button>
+    </form>
+
+    <div id="message" class="hidden"></div>
+  </main>
+  <script>
+    document.getElementById('registration-form').addEventListener('submit', function (event) {
+      event.preventDefault();
+      const formData = {
+        name: document.getElementById('name').value,
+        email: document.getElementById('email').value,
+        day: parseInt(document.getElementById('day').value),
+      };
+      fetch('/register', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      })
+        .then(response => response.json())
+        .then(data => {
+          const messageDiv = document.getElementById('message');
+          messageDiv.textContent = data.message;
+          messageDiv.className = data.message.includes('successful') ? 'success' : 'error';
+          messageDiv.classList.remove('hidden');
+        })
+        .catch(error => console.error('Error:', error));
+    });
+  </script>
+</body>
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User Registration</title>
+  <link rel="stylesheet" href="/static/styles.css">
+</head>
+
+<body>
+  <header>
+    <h1>Transporter CEOs Heart & Mind Workshop</h1>
+  </header>
+  <main>
+    <div class="slot-info">
+      <p>Day 1 (December 5): <span id="day1-slots">Loading...</span> slots booked out of 15</p>
+      <p>Day 2 (December 6): <span id="day2-slots">Loading...</span> slots booked out of 14</p>
+    </div>
+
+    <form id="registration-form">
+      <label for="name">Select Your Name:</label>
+      <select id="name" name="name" required>
+        <option value="" disabled selected>Select a name</option>
+        {% for name in names %}
+        <option value="{{ name }}">{{ name }}</option>
+        {% endfor %}
+      </select>
+
+      <label for="email">Enter Your Email:</label>
+      <input type="email" id="email" name="email" required placeholder="you@example.com">
+
+      <label for="day">Select a Day:</label>
+      <select id="day" name="day" required>
+        <option value="" disabled selected>Select a day</option>
+        <option value="1">Day 1 (December 5)</option>
+        <option value="2">Day 2 (December 6)</option>
+      </select>
+
+      <button type="submit">Register</button>
+    </form>
+
+    <div id="message" class="hidden"></div>
+  </main>
+
+  <script>
+    // Load slot data on page load
+    document.addEventListener('DOMContentLoaded', function () {
+      fetch('/slot-info')
+        .then(response => response.json())
+        .then(data => {
+          document.getElementById('day1-slots').textContent = `${data.day1Count}`;
+          document.getElementById('day2-slots').textContent = `${data.day2Count}`;
+        })
+        .catch(error => console.error('Error fetching slot info:', error));
+    });
+
+    // Handle registration form submission
+    document.getElementById('registration-form').addEventListener('submit', function (event) {
+      event.preventDefault();
+      const formData = {
+        name: document.getElementById('name').value,
+        email: document.getElementById('email').value,
+        day: parseInt(document.getElementById('day').value),
+      };
+
+      fetch('/register', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      })
+        .then(response => response.json())
+        .then(data => {
+          const messageDiv = document.getElementById('message');
+          messageDiv.textContent = data.message;
+          messageDiv.className = data.message.includes('successful') ? 'success' : 'error';
+          messageDiv.classList.remove('hidden');
+
+          // Update slot info dynamically if registration is successful
+          if (data.message.includes('successful')) {
+            fetch('/slot-info')
+              .then(response => response.json())
+              .then(data => {
+                document.getElementById('day1-slots').textContent = `${data.day1Count}`;
+                document.getElementById('day2-slots').textContent = `${data.day2Count}`;
+              });
+          }
+        })
+        .catch(error => console.error('Error:', error));
+    });
+  </script>
+</body>
+
+</html>
