@@ -68,6 +68,7 @@ p {
 	margin: 5px 0;
 	color: #555;
 }
+
 form {
 	display: flex;
 	flex-direction: column;
